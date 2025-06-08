@@ -26,7 +26,13 @@ repositories {
 extra["springCloudVersion"] = "2023.0.5"
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa"){
+		exclude(group = "org.hibernate", module = "hibernate-core")
+		exclude(group = "org.hibernate", module = "hibernate-entitymanager")
+	}
+
+	implementation("org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.2")
+
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 	compileOnly("org.projectlombok:lombok")

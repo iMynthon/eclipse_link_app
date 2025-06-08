@@ -1,0 +1,26 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: eclipse-link-example
+  jpa:
+    properties:
+      persistence.provider: org.eclipse.persistence.jpa.PersistenceProvider
+      eclipselink:
+        target-database: org.eclipse.persistence.platform.database.PostgreSQLPlatform
+        weaving: false
+        logging.level: INFO
+        ddl-generation: none  # Отключаем автосоздание таблиц (лучше использовать миграции)
+    show-sql: true
+    hibernate:
+      ddl-auto: none  # Явно отключаем Hibernate DDL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/eclipse_db
+    username: mynthon
+    password: eclipse
+    hikari:
+      schema: eclipse_schema
+      connection-init-sql: CREATE SCHEMA IF NOT EXISTS eclipse_schema
+      connection-timeout: 10000
+      maximum-pool-size: 10  # Рекомендуется для EclipseLink
