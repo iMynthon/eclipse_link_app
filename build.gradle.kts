@@ -9,7 +9,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 
@@ -27,14 +27,12 @@ extra["springCloudVersion"] = "2023.0.5"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa"){
-		exclude(group = "org.hibernate", module = "hibernate-core")
+		exclude(group = "org.hibernate.orm", module = "hibernate-core")
 		exclude(group = "org.hibernate", module = "hibernate-entitymanager")
 	}
-
-	implementation("org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.2")
-
+	implementation("org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.7")
+	runtimeOnly("org.postgresql:postgresql:42.7.3")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

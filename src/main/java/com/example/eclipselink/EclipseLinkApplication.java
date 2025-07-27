@@ -1,13 +1,11 @@
-package pet_eclipse_link_orm;
+package com.example.eclipselink;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class EclipseLinkApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(EclipseLinkApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(EclipseLinkApplication.class,args);
+    }
 }

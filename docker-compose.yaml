@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "5436:5432"
+    environment:
+      - POSTGRES_USER=link
+      - POSTGRES_PASSWORD=eclipse
+      - POSTGRES_DB=eclipse_db
+
