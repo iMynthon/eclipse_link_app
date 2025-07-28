@@ -9,23 +9,12 @@ spring:
       enabled: ALWAYS
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: none
-    properties:
-      eclipselink:
-        weaving: static
-        ddl-generation: drop-and-create-tables
-        logging:
-          level: FINE
-          parameters: true
-      hibernate:
-        temp:
-          use_jdbc_metadata_defaults: false
   datasource:
     url: jdbc:postgresql://localhost:5436/eclipse_db
     username: link
     password: eclipse
     hikari:
+      auto-commit: true
       schema: eclipse_schema
       connection-init-sql: CREATE SCHEMA IF NOT EXISTS eclipse_schema
       connection-timeout: 10000

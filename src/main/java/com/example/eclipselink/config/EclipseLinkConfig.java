@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
@@ -30,10 +31,18 @@ public class EclipseLinkConfig extends JpaBaseConfiguration {
 
     @Override
     protected Map<String, Object> getVendorProperties() {
-        return Map.of(
-                PersistenceUnitProperties.WEAVING, "static",
-                PersistenceUnitProperties.DDL_GENERATION, "drop-and-create-tables",
-                PersistenceUnitProperties.LOGGING_LEVEL, "FINE",
-                PersistenceUnitProperties.LOGGING_PARAMETERS, "true");
+        HashMap<String,Object> properties = new HashMap<>();
+        properties.put(PersistenceUnitProperties.WEAVING, "static");
+        properties.put(PersistenceUnitProperties.DDL_GENERATION, "drop-and-create-tables");
+        properties.put(PersistenceUnitProperties.LOGGING_LEVEL, "FINE");
+        properties.put(PersistenceUnitProperties.LOGGING_PARAMETERS, "true");
+        properties.put(PersistenceUnitProperties.BATCH_WRITING, "jdbc");
+        properties.put(PersistenceUnitProperties.BATCH_WRITING_SIZE, "100");
+        properties.put(PersistenceUnitProperties.PERSISTENCE_CONTEXT_FLUSH_MODE, "commit");
+        properties.put(PersistenceUnitProperties.CONNECTION_POOL_SEQUENCE, "true");
+        properties.put(PersistenceUnitProperties.ID_VALIDATION, "NULL");
+        properties.put(PersistenceUnitProperties.CACHE_SHARED_DEFAULT, "false");
+        properties.put(PersistenceUnitProperties.JDBC_BIND_PARAMETERS, "true");
+        return properties;
     }
 }
